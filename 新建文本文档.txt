@@ -1,0 +1,33 @@
+String fileExistsPath = PropertiesUtil.getValue("file.upload.basepath") + ServiceConst.EXCEL_URL;
+		
+		File testFile = new File(fileExistsPath);
+		testFile.mkdirs();
+		String url =  fileExistsPath + "/onofflog.xls";
+		File fi = new File(url);
+		fi.createNewFile();
+http://www.2cto.com/database/201506/409819.html
+
+
+http://www.2cto.com/database/201506/409819.html
+
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user` (
+  `id` VARCHAR(32) NOT NULL COMMENT '唯一主键',
+  `fullname` VARCHAR(30) COMMENT '用户姓名',
+  `username` VARCHAR(30) NOT NULL COMMENT '用户登录名',
+  `password` VARCHAR(50) NOT NULL COMMENT '密码',
+  `small_avatar` VARCHAR(200)  COMMENT '小头像',
+  `big_avatar` VARCHAR(200) COMMENT '大头像',
+  `email` VARCHAR(100) COMMENT '邮箱',
+  `mobile` VARCHAR(11) COMMENT '手机号',
+  `gender` VARCHAR(1) COMMENT '1：男 2： 女',
+  `user_type` VARCHAR(1) COMMENT '0:平台超级管理员  1：物流商管理员 2：信息录入人员 3：app配送员 4：非登录用户',
+  `pinyin` VARCHAR(100) COMMENT '用户姓名拼音',
+  `user_status` VARCHAR(1) DEFAULT '1' COMMENT '0：无效 1：有效',
+  `create_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` VARCHAR(20) NOT NULL COMMENT '创建人',
+  `update_date` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_by` VARCHAR(20) COMMENT '更新人',
+  `del_flag` VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标示（0.初始创建 1.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='用户-角色表';
