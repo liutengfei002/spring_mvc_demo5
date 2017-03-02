@@ -1,0 +1,225 @@
+﻿CREATE FUNCTION m1
+RETURN aaa.id%TYPE
+AS
+       a aaa.id%TYPE;
+BEGIN 
+       SELECT ID INTO a FROM aaa WHERE NAME = 'kobe' ;
+       RETURN a;
+END m1;
+ DROP FUNCTION m2;
+ SELECT m2 FROM dual;
+ 
+CREATE FUNCTION m2
+RETURN aaa%ROWTYPE;
+AS
+       b aaa%ROWTYPE;
+BEGIN 
+       SELECT * INTO b FROM aaa WHERE NAME = 'kobe';
+       RETURN b 
+END m2;
+
+DROP FUNCTION m2;
+SELECT m2 FROM dual;
+SELECT * FROM aaa;
+UPDATE aaa SET NAME = 'liu' WHERE ID = '3B95129497194F1FB767A871804366F2';
+
+
+CREATE FUNCTION m3
+RETURN NUMBER
+AS
+BEGIN 
+  UPDATE aaa SET NAME = 'liu1' WHERE ID = '3B95129497194F1FB767A871804366F2';
+  COMMIT;
+  RETURN SQL%ROWCOUNT;
+END m3;
+DROP FUNCTION m3
+SELECT m3 FROM dual;
+
+CREATE FUNCTION m4
+RETURN NUMBER
+AS
+       i NUMBER(2);
+BEGIN
+        i : = 1
+       LOOP 
+         i := i + 1;
+         INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+         EXIT WHEN (i <= 10);
+        END LOOP;
+END m4;
+
+SELECT m5 FROM dual;
+DROP FUNCTION m5;
+CREATE FUNCTION m5
+AS
+       i NUMBER(2);
+BEGIN
+       i := 0;
+       WHILE i <= 10 LOOP
+          INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+          i := i + 1;
+          END LOOP;
+END m5;   
+
+
+CREATE FUNCTION m6
+AS 
+DECLARE       i NUMBER(2) = 0;
+BEGIN
+       i := 0;
+       WHILE i <= 10 LOOP 
+          INSERT INTO aaa VALUES(DEFAULT,i);
+          i := i + 1;
+        END LOOP;
+END m6;
+ DROP FUNCTION m6              
+ SELECT m6 FROM dual;
+ DROP FUNCTION m1
+ 
+CREATE FUNCTION m7
+RETURN NUMBER
+AS
+ j NUMBER(3);
+BEGIN
+    j := 0;
+    FOR i IN 1..10 LOOP
+        INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+        j := j + 1;
+    END LOOP;
+    COMMIT;
+    RETURN j;
+ END m7;
+DROP FUNCTION m7;
+SELECT * FROM aaa;
+SELECT m7  FROM dual;
+DELETE FROM aaa
+CREATE  PROCEDURE m1
+AS
+BEGIN
+      FOR i IN 1..10 LOOP
+        INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+       END LOOP; 
+END;
+
+DROP FUNCTION msw_add;
+
+exec   msw_add FROM dual;
+
+SELECT msw_add FROM dual
+
+create or replace FUNCTION msw_add is
+begin
+  FOR i IN 1..10 LOOP
+        INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+       END LOOP; 
+       COMMIT;
+end msw_add;
+ DECLARE i 
+
+
+DECLARE i BINARY_INTEGER := 1;
+BEGIN 
+  WHILE i <= 10 LOOP
+     INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+     i := i + 1;
+     END LOOP;
+     COMMIT;
+ END;  
+DELETE FROM aaa;
+
+BEGIN
+  FOR i IN 1..10 LOOP
+
+      INSERT INTO aaa VALUES(DEFAULT,'liu' || i);
+END LOOP;
+END;
+CREATE FUNCTION m1
+RETURN NUMBER
+AS
+ a NUMBER(3);
+BEGIN 
+  a := 0;
+  FOR i IN 1..10 LOOP
+      a := a + 1;
+      INSERT INTO aaa VALUES(DEFAULT,'liu');
+      
+  END LOOP;
+  COMMIT;
+  RETURN a;
+END;
+DROP FUNCTION m1
+SELECT m1 FROM dual;
+
+
+DELETE FROM aaa;
+
+CREATE FUNCTION m1
+RETURN NUMBER
+AS
+       PRAGMA AUTONOMOUS_TRANSACTION;
+       a NUMBER(3);
+BEGIN 
+       a := 0;
+       FOR i IN 1..10 LOOP
+         INSERT INTO aaa VALUES(DEFAULT,'liu');
+         a := a + 1;
+       END LOOP;
+       COMMIT;
+       RETURN a;
+END m1;
+
+
+DROP FUNCTION m1
+
+SELECT * FROM aaa;
+SELECT m1 FROM dual;
+DROP FUNCTION m1;
+
+
+SELECT * FROM aaa
+
+CREATE FUNCTION m1
+RETURN NUMBER
+AS 
+       PRAGMA AUTONOMOUS_TRANSACTION;
+       a NUMBER(2);
+BEGIN 
+  a := 0;
+  FOR i IN 1..10 LOOP
+     INSERT INTO aaa VALUES(DEFAULT,'fei' || a);
+     a := a + 1;
+  END LOOP;
+  COMMIT;
+  RETURN a;
+END m1;
+
+CREATE FUNCTION m2
+RETURN NUMBER
+AS 
+       PRAGMA AUTONOMOUS_TRANSACTION;
+       a NUMBER(2);
+BEGIN 
+  a := 0;
+  WHILE(a <= 10) LOOP
+          INSERT INTO aaa VALUES(DEFAULT,'fei');
+          a := a +1;
+   END LOOP;
+   RETURN 99;
+END m2;
+DROP FUNCTION m2;
+
+DELETE FROM aaa;
+  SELECT m2 FROM dual;
+
+
+
+
+
+
+
+
+
+
+
+
+
